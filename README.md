@@ -22,6 +22,6 @@ Aplicación web creada con React, TypeScript y Vite para definir un presupuesto 
 - **Reducer** con acciones tipadas para presupuesto, gastos, modal y filtros, lo que facilita escalar reglas financieras más complejas.
 - **Componentes Presentacionale** divididos en formularios, listados y visualizaciones, cada uno consumiendo el contexto mediante el hook _useBudget_.
 
-### URL del Proyecto
+### URL del Proyecto:
 
 https://stellar-sorbet-a7264d.netlify.app
