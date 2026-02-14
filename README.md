@@ -1,54 +1,27 @@
-# React + TypeScript + Vite
+# Control de Gastos con React + Context API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web creada con React, TypeScript y Vite para definir un presupuesto y administrar gastos por categoría en tiempo real. El estado global se maneja con Context API y un reducer tipado que persiste presupuesto y movimientos en _LocalStorage_, por lo que la información se conserva entre sesiones.
 
-Currently, two official plugins are available:
+## Características Principales:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Definición de Presupuesto:** Formulario inicial que valida montos positivos antes de habilitar el resto de la interfaz.
+2. **Gestión Completa de Gastos:** Modal con formulario responsivo que permite registrar, editar o eliminar gastos con validaciones de campos obligatorios y control del saldo disponible.
+3. **Visualicación del Presupuesto:** Panel con barra de progreso circular y totales (presupuesto, disponible, gastado) además de un botón para reiniciar la aplicación.
+4. **Filtro por Categoría:** Selector que muestra solo los gastos asociados a una categoría específica, ideal para analizar hábitos de consumo.
+5. **Catálogo de categorías:** Listado tipado con íconos, listo para extenderse con nuevas opciones.
 
-## Expanding the ESLint configuration
+### Stack Tecnológico
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:** React + TypeScript, Vite como bundler, TailwindCSS + Headless UI para tipografía y componentes accesibles, y Heroicons para iconografía.
+- **UX:** react-circular-progressbar, react-date-picker y react-calendar para métricas visuales y selección de fechas.
+- **Utilidades:** UUID para identificar gastos, Context API + useReducer para la lógica de negocio, y persistencia en _LocalStorage_.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Arquitectura
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Contexto Global** que expone estado, dispatch y métricas derivadas.
+- **Reducer** con acciones tipadas para presupuesto, gastos, modal y filtros, lo que facilita escalar reglas financieras más complejas.
+- **Componentes Presentacionale** divididos en formularios, listados y visualizaciones, cada uno consumiendo el contexto mediante el hook _useBudget_.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### URL del Proyecto
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+https://stellar-sorbet-a7264d.netlify.app
